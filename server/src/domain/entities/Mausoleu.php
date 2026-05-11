@@ -32,37 +32,37 @@ class Mausoleu
 
     public string $nome {
         get {
-            return $this->nome;
+            return $this->props['nome'];
         }
 
         set(string $value) {
             $this->validaNome($value);
 
-            $this->nome = $value;
+            $this->props['nome'] = $value;
         }
     }
 
     public int $lugares {
         get {
-            return $this->lugares;
+            return $this->props['lugares'];
         }
 
         set(int $value) {
             $this->validaLugares($value);
 
-            $this->lugares = $value;
+            $this->props['lugares'] = $value;
         }
     }
 
     public int $lugaresOcupados {
         get {
-            return $this->lugaresOcupados ?? 0;
+            return $this->props['lugaresOcupados'] ?? 0;
         }
 
         set(int $value) {
             $this->validaLugaresOcupados($value);
 
-            $this->lugaresOcupados = $value;
+            $this->props['lugaresOcupados'] = $value;
         }
     }
 
