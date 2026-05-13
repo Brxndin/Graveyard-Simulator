@@ -9,7 +9,13 @@ Além disso, serve para estudo e prática da Clean Architecture, Domain-Driven D
 
 ## Tecnologias usadas
 
+### server
 - PHP
 - Slim Framework
 - Docker
 - MariaDB
+
+### app
+
+- TypeScript
+- React
