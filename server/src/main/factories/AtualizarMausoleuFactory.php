@@ -3,8 +3,7 @@
 namespace Server\main\factories;
 
 use Server\application\useCases\AtualizarMausoleuUseCase;
-use Server\infrastructure\database\PDOConnection;
-use Server\infrastructure\repositories\MockMausoleuRepository;
+use Server\infrastructure\database\config\PDOConnection;
 use Server\infrastructure\repositories\PDOMausoleuRepository;
 use Server\presentation\controllers\AtualizarMausoleuController;
 use Server\presentation\protocols\Controller;

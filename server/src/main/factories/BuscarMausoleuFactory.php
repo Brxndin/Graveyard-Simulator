@@ -3,7 +3,7 @@
 namespace Server\main\factories;
 
 use Server\application\useCases\BuscarMausoleuUseCase;
-use Server\infrastructure\database\PDOConnection;
+use Server\infrastructure\database\config\PDOConnection;
 use Server\infrastructure\repositories\PDOMausoleuRepository;
 use Server\presentation\controllers\BuscarMausoleuController;
 use Server\presentation\protocols\Controller;

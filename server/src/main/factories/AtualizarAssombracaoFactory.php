@@ -3,7 +3,7 @@
 namespace Server\main\factories;
 
 use Server\application\useCases\AtualizarAssombracaoUseCase;
-use Server\infrastructure\database\PDOConnection;
+use Server\infrastructure\database\config\PDOConnection;
 use Server\infrastructure\repositories\PDOAssombracaoRepository;
 use Server\presentation\controllers\AtualizarAssombracaoController;
 use Server\presentation\protocols\Controller;
