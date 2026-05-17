@@ -7,15 +7,15 @@ use Server\domain\repositories\MausoleuRepository;
 
 class BuscarMausoleuUseCase
 {
-    private MausoleuRepository $mausoleuRepository;
+    private MausoleuRepository $repository;
 
-    public function __construct(MausoleuRepository $mausoleuRepository)
+    public function __construct(MausoleuRepository $repository)
     {
-        $this->mausoleuRepository = $mausoleuRepository;
+        $this->repository = $repository;
     }
 
     public function execute(int $id): Mausoleu | null
     {
-        return $this->mausoleuRepository->find($id);
+        return $this->repository->find($id);
     }
 }

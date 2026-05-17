@@ -7,15 +7,15 @@ use Server\domain\repositories\AssombracaoRepository;
 
 class BuscarAssombracaoUseCase
 {
-    private AssombracaoRepository $assombracaoRepository;
+    private AssombracaoRepository $repository;
 
-    public function __construct(AssombracaoRepository $assombracaoRepository)
+    public function __construct(AssombracaoRepository $repository)
     {
-        $this->assombracaoRepository = $assombracaoRepository;
+        $this->repository = $repository;
     }
 
     public function execute(int $id): Assombracao | null
     {
-        return $this->assombracaoRepository->find($id);
+        return $this->repository->find($id);
     }
 }

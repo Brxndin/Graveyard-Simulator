@@ -9,11 +9,11 @@ use Throwable;
 
 class AtualizarMausoleuController implements Controller
 {
-    private AtualizarMausoleuUseCase $atualizarMausoleuUseCase;
+    private AtualizarMausoleuUseCase $useCase;
 
-    public function __construct(AtualizarMausoleuUseCase $atualizarMausoleuUseCase)
+    public function __construct(AtualizarMausoleuUseCase $useCase)
     {
-        $this->atualizarMausoleuUseCase = $atualizarMausoleuUseCase;
+        $this->useCase = $useCase;
     }
 
     public function handle(array $request): array
@@ -22,7 +22,7 @@ class AtualizarMausoleuController implements Controller
             $id = $request['params']['id'] ?? null;
             $dados = $request['body'];
 
-            $mausoleu = $this->atualizarMausoleuUseCase->execute($id, $dados);
+            $mausoleu = $this->useCase->execute($id, $dados);
 
             return Responses::OK([
                 'message' => 'Registro atualizado com sucesso!',

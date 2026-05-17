@@ -9,11 +9,11 @@ use Throwable;
 
 class BuscarAssombracaoController implements Controller
 {
-    private BuscarAssombracaoUseCase $buscarAssombracaoUseCase;
+    private BuscarAssombracaoUseCase $useCase;
 
-    public function __construct(BuscarAssombracaoUseCase $buscarAssombracaoUseCase)
+    public function __construct(BuscarAssombracaoUseCase $useCase)
     {
-        $this->buscarAssombracaoUseCase = $buscarAssombracaoUseCase;
+        $this->useCase = $useCase;
     }
 
     public function handle(array $request): array
@@ -21,7 +21,7 @@ class BuscarAssombracaoController implements Controller
         try {
             $id = $request['params']['id'] ?? null;
 
-            $assombracao = $this->buscarAssombracaoUseCase->execute($id);
+            $assombracao = $this->useCase->execute($id);
 
             if (!$assombracao) {
                 return Responses::notFound('Não foi possível encontrar a assombração!');

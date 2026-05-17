@@ -9,11 +9,11 @@ use Throwable;
 
 class RemoverAssombracaoController implements Controller
 {
-    private RemoverAssombracaoUseCase $removerAssombracaoUseCase;
+    private RemoverAssombracaoUseCase $useCase;
 
-    public function __construct(RemoverAssombracaoUseCase $removerAssombracaoUseCase)
+    public function __construct(RemoverAssombracaoUseCase $useCase)
     {
-        $this->removerAssombracaoUseCase = $removerAssombracaoUseCase;
+        $this->useCase = $useCase;
     }
 
     public function handle(array $request): array
@@ -21,7 +21,7 @@ class RemoverAssombracaoController implements Controller
         try {
             $id = $request['params']['id'] ?? null;
 
-            $this->removerAssombracaoUseCase->execute($id);
+            $this->useCase->execute($id);
 
             return Responses::OK([
                 'message' => 'Registro removido com sucesso!',

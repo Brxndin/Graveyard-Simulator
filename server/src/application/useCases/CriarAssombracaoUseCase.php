@@ -9,11 +9,11 @@ use Server\domain\repositories\AssombracaoRepository;
 
 class CriarAssombracaoUseCase
 {
-    private AssombracaoRepository $assombracaoRepository;
+    private AssombracaoRepository $repository;
 
-    public function __construct(AssombracaoRepository $assombracaoRepository)
+    public function __construct(AssombracaoRepository $repository)
     {
-        $this->assombracaoRepository = $assombracaoRepository;
+        $this->repository = $repository;
     }
 
     public function execute(array $dados): Assombracao
@@ -33,6 +33,6 @@ class CriarAssombracaoUseCase
             mausoleu: $mausoleu,
         );
 
-        return $this->assombracaoRepository->insert($assombracao);
+        return $this->repository->insert($assombracao);
     }
 }

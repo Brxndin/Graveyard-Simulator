@@ -7,11 +7,11 @@ use Server\domain\repositories\MausoleuRepository;
 
 class CriarMausoleuUseCase
 {
-    private MausoleuRepository $mausoleuRepository;
+    private MausoleuRepository $repository;
 
-    public function __construct(MausoleuRepository $mausoleuRepository)
+    public function __construct(MausoleuRepository $repository)
     {
-        $this->mausoleuRepository = $mausoleuRepository;
+        $this->repository = $repository;
     }
 
     public function execute(array $dados): Mausoleu
@@ -21,6 +21,6 @@ class CriarMausoleuUseCase
             lugares: $dados['lugares'] ?? null,
         );
 
-        return $this->mausoleuRepository->insert($mausoleu);
+        return $this->repository->insert($mausoleu);
     }
 }

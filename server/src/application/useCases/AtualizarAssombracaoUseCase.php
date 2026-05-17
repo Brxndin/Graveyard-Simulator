@@ -9,16 +9,16 @@ use Server\domain\enums\TipoAssombracaoEnum;
 
 class AtualizarAssombracaoUseCase
 {
-    private AssombracaoRepository $assombracaoRepository;
+    private AssombracaoRepository $repository;
 
-    public function __construct(AssombracaoRepository $assombracaoRepository)
+    public function __construct(AssombracaoRepository $repository)
     {
-        $this->assombracaoRepository = $assombracaoRepository;
+        $this->repository = $repository;
     }
 
     public function execute(int $id, array $dados): Assombracao
     {
-        $assombracao = $this->assombracaoRepository->find($id);
+        $assombracao = $this->repository->find($id);
 
         if ($assombracao) {
             if (array_key_exists('nome', $dados)) {
@@ -34,7 +34,7 @@ class AtualizarAssombracaoUseCase
 
                 // aqui só pode ocorrer a troca de mausoléu
                 if (!empty($dados['mausoleu']['id'])) {
-                    $mausoleu = $this->assombracaoRepository->findMausoleu($dados['mausoleu']['id']);
+                    $mausoleu = $this->repository->findMausoleu($dados['mausoleu']['id']);
                 }
 
                 $assombracao->mausoleu = $mausoleu;
@@ -43,7 +43,7 @@ class AtualizarAssombracaoUseCase
             throw new DomainException('Erro ao buscar a assombração!');
         }
 
-        $linhasAlteradas = $this->assombracaoRepository->update($assombracao);
+        $linhasAlteradas = $this->repository->update($assombracao);
 
         if ($linhasAlteradas <= 0) {
             throw new DomainException('Nenhum dado foi alterado!');

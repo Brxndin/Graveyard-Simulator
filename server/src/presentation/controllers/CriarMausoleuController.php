@@ -9,11 +9,11 @@ use Throwable;
 
 class CriarMausoleuController implements Controller
 {
-    private CriarMausoleuUseCase $criarMausoleuUseCase;
+    private CriarMausoleuUseCase $useCase;
 
-    public function __construct(CriarMausoleuUseCase $criarMausoleuUseCase)
+    public function __construct(CriarMausoleuUseCase $useCase)
     {
-        $this->criarMausoleuUseCase = $criarMausoleuUseCase;
+        $this->useCase = $useCase;
     }
 
     public function handle(array $request): array
@@ -21,7 +21,7 @@ class CriarMausoleuController implements Controller
         try {
             $dados = $request['body'];
 
-            $mausoleu = $this->criarMausoleuUseCase->execute($dados);
+            $mausoleu = $this->useCase->execute($dados);
 
             return Responses::created([
                 'message' => 'Registro criado com sucesso!',

@@ -9,11 +9,11 @@ use Throwable;
 
 class BuscarMausoleuController implements Controller
 {
-    private BuscarMausoleuUseCase $buscarMausoleuUseCase;
+    private BuscarMausoleuUseCase $useCase;
 
-    public function __construct(BuscarMausoleuUseCase $buscarMausoleuUseCase)
+    public function __construct(BuscarMausoleuUseCase $useCase)
     {
-        $this->buscarMausoleuUseCase = $buscarMausoleuUseCase;
+        $this->useCase = $useCase;
     }
 
     public function handle(array $request): array
@@ -21,7 +21,7 @@ class BuscarMausoleuController implements Controller
         try {
             $id = $request['params']['id'] ?? null;
 
-            $mausoleu = $this->buscarMausoleuUseCase->execute($id);
+            $mausoleu = $this->useCase->execute($id);
 
             if (!$mausoleu) {
                 return Responses::notFound('Não foi possível encontrar o mausoléu!');

@@ -8,16 +8,16 @@ use Server\domain\repositories\MausoleuRepository;
 
 class AtualizarMausoleuUseCase
 {
-    private MausoleuRepository $mausoleuRepository;
+    private MausoleuRepository $repository;
 
-    public function __construct(MausoleuRepository $mausoleuRepository)
+    public function __construct(MausoleuRepository $repository)
     {
-        $this->mausoleuRepository = $mausoleuRepository;
+        $this->repository = $repository;
     }
 
     public function execute(int $id, array $dados): Mausoleu
     {
-        $mausoleu = $this->mausoleuRepository->find($id);
+        $mausoleu = $this->repository->find($id);
 
         if ($mausoleu) {
             if (array_key_exists('nome', $dados)) {
@@ -31,7 +31,7 @@ class AtualizarMausoleuUseCase
             throw new DomainException('Mausoléu não econtrado!');
         }
 
-        $linhasAlteradas = $this->mausoleuRepository->update($mausoleu);
+        $linhasAlteradas = $this->repository->update($mausoleu);
 
         if ($linhasAlteradas <= 0) {
             throw new DomainException('Nenhum dado foi alterado!');

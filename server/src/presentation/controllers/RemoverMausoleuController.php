@@ -9,11 +9,11 @@ use Throwable;
 
 class RemoverMausoleuController implements Controller
 {
-    private RemoverMausoleuUseCase $removerMausoleuUseCase;
+    private RemoverMausoleuUseCase $useCase;
 
-    public function __construct(RemoverMausoleuUseCase $removerMausoleuUseCase)
+    public function __construct(RemoverMausoleuUseCase $useCase)
     {
-        $this->removerMausoleuUseCase = $removerMausoleuUseCase;
+        $this->useCase = $useCase;
     }
 
     public function handle(array $request): array
@@ -21,7 +21,7 @@ class RemoverMausoleuController implements Controller
         try {
             $id = $request['params']['id'] ?? null;
 
-            $this->removerMausoleuUseCase->execute($id);
+            $this->useCase->execute($id);
 
             return Responses::OK([
                 'message' => 'Registro removido com sucesso!',

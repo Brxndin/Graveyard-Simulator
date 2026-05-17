@@ -7,16 +7,16 @@ use DomainException;
 
 class RemoverAssombracaoUseCase
 {
-    private AssombracaoRepository $assombracaoRepository;
+    private AssombracaoRepository $repository;
 
-    public function __construct(AssombracaoRepository $assombracaoRepository)
+    public function __construct(AssombracaoRepository $repository)
     {
-        $this->assombracaoRepository = $assombracaoRepository;
+        $this->repository = $repository;
     }
 
     public function execute(int $id): void
     {
-        $linhasAlteradas = $this->assombracaoRepository->delete($id);
+        $linhasAlteradas = $this->repository->delete($id);
 
         if ($linhasAlteradas <= 0) {
             throw new DomainException('Nenhum dado foi removido!');

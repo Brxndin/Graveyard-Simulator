@@ -9,11 +9,11 @@ use Throwable;
 
 class AtualizarAssombracaoController implements Controller
 {
-    private AtualizarAssombracaoUseCase $atualizarAssombracaoUseCase;
+    private AtualizarAssombracaoUseCase $useCase;
 
-    public function __construct(AtualizarAssombracaoUseCase $atualizarAssombracaoUseCase)
+    public function __construct(AtualizarAssombracaoUseCase $useCase)
     {
-        $this->atualizarAssombracaoUseCase = $atualizarAssombracaoUseCase;
+        $this->useCase = $useCase;
     }
 
     public function handle(array $request): array
@@ -22,7 +22,7 @@ class AtualizarAssombracaoController implements Controller
             $id = $request['params']['id'] ?? null;
             $dados = $request['body'];
 
-            $assombracao = $this->atualizarAssombracaoUseCase->execute($id, $dados);
+            $assombracao = $this->useCase->execute($id, $dados);
 
             return Responses::OK([
                 'message' => 'Registro atualizado com sucesso!',

@@ -6,15 +6,15 @@ use Server\domain\repositories\MausoleuRepository;
 
 class BuscarMausoleusUseCase
 {
-    private MausoleuRepository $mausoleuRepository;
+    private MausoleuRepository $repository;
 
-    public function __construct(MausoleuRepository $mausoleuRepository)
+    public function __construct(MausoleuRepository $repository)
     {
-        $this->mausoleuRepository = $mausoleuRepository;
+        $this->repository = $repository;
     }
 
     public function execute(): array
     {
-        return $this->mausoleuRepository->get();
+        return $this->repository->get();
     }
 }

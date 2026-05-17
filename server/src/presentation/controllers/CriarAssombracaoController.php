@@ -9,11 +9,11 @@ use Throwable;
 
 class CriarAssombracaoController implements Controller
 {
-    private CriarAssombracaoUseCase $criarAssombracaoUseCase;
+    private CriarAssombracaoUseCase $useCase;
 
-    public function __construct(CriarAssombracaoUseCase $criarAssombracaoUseCase)
+    public function __construct(CriarAssombracaoUseCase $useCase)
     {
-        $this->criarAssombracaoUseCase = $criarAssombracaoUseCase;
+        $this->useCase = $useCase;
     }
 
     public function handle(array $request): array
@@ -21,7 +21,7 @@ class CriarAssombracaoController implements Controller
         try {
             $dados = $request['body'];
 
-            $assombracao = $this->criarAssombracaoUseCase->execute($dados);
+            $assombracao = $this->useCase->execute($dados);
 
             return Responses::created([
                 'message' => 'Registro criado com sucesso!',
