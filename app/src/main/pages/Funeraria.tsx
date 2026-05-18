@@ -6,10 +6,12 @@
 
 import { BotaoNavegacao } from "../components/BotaoNavegacao";
 import { BoxTexto } from "../components/BoxTexto";
-import { Destinos } from "../enums/Destinos";
+import { Titulo } from "../components/Titulo";
+import { Destinos } from "../enums/destinos";
+import imagemFuneraria from '../assets/funeraria.png';
 
 // se for por formulário, limitar o número de cadastros por tempo também. Além disso, o necrotério deve ter um limite, então a pessoa será obrigada a alocar o povo nos mausoléus
-export const Necroterio = () => {
+export const Funeraria = () => {
     // verificar se não é melhor pegar esses dados de um repository mockado mesmo
     const descricoes = [
         'Você chega no pátio principal, um lugar que, em outro contexto, seria colorido e alegre, mas que aqui, tanto no dia quanto na escuridão da noite, tem um ar fúnebre e triste, como se perdesse a cor. Você consegue ver a lua cheia soltando seu fraco brilho azul, mas que já é o suficiente para dissernir os arredores.',
@@ -19,9 +21,11 @@ export const Necroterio = () => {
 
     return (
         <div>
-            <h1>Necrotério</h1>
-            <BoxTexto descricoes={descricoes} />
-            <BotaoNavegacao valor="Pátio Principal" destino={`caminho/${Destinos.PatioPrincipal}`} />
+            <Titulo texto='Funerária'/>
+            <BoxTexto descricoes={descricoes} imagem={imagemFuneraria} />
+            <div className="center">
+                <BotaoNavegacao valor="Pátio Principal" destino={`caminho/${Destinos.PatioPrincipal}`} />
+            </div>
         </div>
     );
 };
