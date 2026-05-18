@@ -3,9 +3,11 @@
 // descrever as estátuas de anjos ou de pessoas que têm nos mausoléus
 // verificar se faz sentido ter gárgulas ou estátuas de esqueletos também que representam a morte
 
+import imagemMausoleus from '../assets/mausoleus.jpg';
 import { BotaoNavegacao } from '../components/BotaoNavegacao';
 import { BoxTexto } from '../components/BoxTexto';
-import { Destinos } from '../enums/Destinos';
+import { Titulo } from '../components/Titulo';
+import { Destinos } from '../enums/destinos';
 
 export const Mausoleus = () => {
     // verificar se não é melhor pegar esses dados de um repository mockado mesmo
@@ -17,9 +19,11 @@ export const Mausoleus = () => {
 
     return (
         <div>
-            <h1>Mausoléus</h1>
-            <BoxTexto descricoes={descricoes} />
-            <BotaoNavegacao valor="Pátio Principal" destino={`caminho/${Destinos.PatioPrincipal}`} />
+            <Titulo texto='Mausoléus'/>
+            <BoxTexto descricoes={descricoes} imagem={imagemMausoleus} />
+            <div className='center'>
+                <BotaoNavegacao valor="Pátio Principal" destino={`caminho/${Destinos.PatioPrincipal}`} />
+            </div>
         </div>
     );
 };

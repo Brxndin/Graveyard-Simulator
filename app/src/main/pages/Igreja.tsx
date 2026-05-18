@@ -3,9 +3,11 @@
 // isso deve dar um pouco de dinheiro também
 // na descrição, falar sobre vitrais, som de órgão, sinos etc
 
+import imagemIgreja from '../assets/igreja.jpg';
 import { BotaoNavegacao } from '../components/BotaoNavegacao';
 import { BoxTexto } from '../components/BoxTexto';
-import { Destinos } from '../enums/Destinos';
+import { Titulo } from '../components/Titulo';
+import { Destinos } from '../enums/destinos';
 
 export const Igreja = () => {
     // verificar se não é melhor pegar esses dados de um repository mockado mesmo
@@ -17,9 +19,11 @@ export const Igreja = () => {
 
     return (
         <div>
-            <h1>Igreja</h1>
-            <BoxTexto descricoes={descricoes} />
-            <BotaoNavegacao valor="Pátio Principal" destino={`caminho/${Destinos.PatioPrincipal}`} />
+            <Titulo texto='Igreja'/>
+            <BoxTexto descricoes={descricoes} imagem={imagemIgreja} />
+            <div className='center'>
+                <BotaoNavegacao valor="Pátio Principal" destino={`caminho/${Destinos.PatioPrincipal}`} />
+            </div>
         </div>
     );
 };

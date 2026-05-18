@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
+import imagemCaminho from '../assets/caminho.png';
 import { BotaoNavegacao } from '../components/BotaoNavegacao';
 import { BoxTexto } from '../components/BoxTexto';
+import { Titulo } from '../components/Titulo';
 
 export const Caminho = () => {
     const { destino } = useParams();
@@ -11,9 +13,11 @@ export const Caminho = () => {
 
     return (
         <div>
-            <h1>Durante a sua caminhada...</h1>
-            <BoxTexto descricoes={descricoes} />
-            <BotaoNavegacao valor="Continuar" destino={destino ?? 'perdido'} />
+            <Titulo texto='Durante a sua caminhada...'/>
+            <BoxTexto descricoes={descricoes} imagem={imagemCaminho} />
+            <div className='center'>
+                <BotaoNavegacao valor="Continuar" destino={destino ?? 'perdido'} />
+            </div>
         </div>
     );
 };
