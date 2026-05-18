@@ -1,13 +1,14 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
-import { Destinos } from './enums/Destinos';
+import { Destinos } from './enums/destinos';
 import { Caminho } from './pages/Caminho';
+import { Funeraria } from './pages/Funeraria';
 import { Igreja } from './pages/Igreja';
 import { Incerto } from './pages/Incerto';
 import { Mausoleus } from './pages/Mausoleus';
-import { Necroterio } from './pages/Necroterio';
 import { PatioPrincipal } from './pages/PatioPrincipal';
 import { TelaInicial } from './pages/TelaInicial';
+import { JogoProvider } from './providers/JogoProvider';
 
 const router = createBrowserRouter([
     {
@@ -35,8 +36,8 @@ const router = createBrowserRouter([
                 element: <Mausoleus />,
             },
             {
-                path: Destinos.Necroterio,
-                element: <Necroterio />,
+                path: Destinos.Funeraria,
+                element: <Funeraria />,
             },
             {
                 path: '*',
@@ -47,5 +48,9 @@ const router = createBrowserRouter([
 ]);
 
 export const App = () => {
-    return <RouterProvider router={router} />;
+    return (
+        <JogoProvider>
+            <RouterProvider router={router} />
+        </JogoProvider>
+    );
 };
