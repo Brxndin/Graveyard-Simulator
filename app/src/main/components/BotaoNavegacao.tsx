@@ -8,5 +8,5 @@ interface BotaoNavegacaoProps {
 export const BotaoNavegacao = ({ valor, destino }: BotaoNavegacaoProps) => {
     const navigate = useNavigate();
 
-    return <button onClick={() => navigate(`/${destino ?? 'perdido'}`)}>{valor}</button>;
+    return <button className='botao-navegacao' onClick={() => navigate(`/${destino ?? 'perdido'}`)}>{valor}</button>;
 };
