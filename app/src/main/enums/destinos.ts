@@ -1,7 +1,7 @@
 export const Destinos = {
     PatioPrincipal: 'patio-principal',
     Igreja: 'igreja',
-    Necroterio: 'necroterio',
+    Funeraria: 'funeraria',
     Mausoleus: 'mausoleus',
 } as const;
 
