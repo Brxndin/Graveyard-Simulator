@@ -14,10 +14,18 @@ export const useControllerAdapter = <TIn, TOut>(controller: Controller<TIn, TOut
             const result = await controller.handle(request);
 
             setData(result);
-        } catch (error: unknown) {
+
+            return result;
+        } catch (error) {
             console.log(error);
 
-            setError(error?.message ?? 'Ocorreu um erro.');
+            if (error instanceof Error) {
+                setError(error.message);
+            } else {
+                setError('Ocorreu um erro.');
+            }
+
+            return null;
         } finally {
             setIsLoading(false);
         }
