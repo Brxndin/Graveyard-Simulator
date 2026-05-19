@@ -1,24 +1,19 @@
-import { useState } from 'react';
-
 interface BoxTextoProps {
-    descricoes: string[];
+    descricao: string;
     imagem: string;
 }
 
-export const BoxTexto = ({ descricoes, imagem }: BoxTextoProps) => {
-    const [numeroAleatorio] = useState(() => Math.random());
-    const [texto] = useState(descricoes[Math.floor(numeroAleatorio * descricoes.length)]);
-
+export const BoxTexto = ({ descricao, imagem }: BoxTextoProps) => {
     return (
         <div>
             <div className='center'>
                 <div className="box-imagem">
-                    <img className='imagem-box' src={imagem} alt="Imagem localização" />
+                    <img className='imagem-central' src={imagem} alt="Imagem localização" />
                 </div>
             </div>
             <div className='center'>
                 <div className="box-texto">
-                    <p>{texto}</p>
+                    <p>{descricao}</p>
                 </div>
             </div>
         </div>
