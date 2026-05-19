@@ -1,9 +1,8 @@
-import { useContext } from 'react';
-import imagemPatio from '../assets/patio.jpg';
+import { useContext, useState } from 'react';
+import imagemPatio from '../assets/images/patio.png';
 import { BotaoAcao } from '../components/BotaoAcao';
 import { BotaoNavegacao } from '../components/BotaoNavegacao';
 import { BoxTexto } from '../components/BoxTexto';
-import { Status } from '../components/Status';
 import { Titulo } from '../components/Titulo';
 import { JogoContext } from '../contexts/JogoContext';
 import { Destinos } from '../enums/destinos';
@@ -11,7 +10,7 @@ import { useAtualizarJogador } from '../hooks/useAtualizarJogador';
 
 export const PatioPrincipal = () => {
     const { jogador, setJogador } = useContext(JogoContext);
-    const { jogadorAtualizado, atualizarJogador, error } = useAtualizarJogador();
+    const { atualizarJogador } = useAtualizarJogador();
 
     // verificar se não é melhor pegar esses dados de um repository mockado mesmo
     const descricoes = [
@@ -20,53 +19,85 @@ export const PatioPrincipal = () => {
         'No pátio principal, há diversas flores brancas, vermelhas e amarelas que, durante o dia, fazem par com as que são deixadas em cima dos túmulos. À noite, porém, embelezam o caminho junto da luz prateada que vem do céu, quase como um véu transparente e florido, ao mesmo tempo lindo e fantasmagórico.',
     ];
 
+    const [numeroAleatorio] = useState(() => Math.random());
+    const [descricao, setDescricao] = useState(descricoes[Math.floor(numeroAleatorio * descricoes.length)]);
+
     return (
         <div>
             <Titulo texto="Pátio Principal" />
-            <Status dinheiro={jogador?.dinheiro} energia={jogador?.energia} energiaMaxima={jogador?.energiaMaxima} />
-            <p>{error}</p>
-            <BoxTexto descricoes={descricoes} imagem={imagemPatio} />
-            <div className="center">
-                <BotaoAcao
-                    valor="Varrer"
-                    acao={() => {
-                        if (jogador) {
-                            atualizarJogador({
-                                jogador: jogador,
-                                dinheiro: 100,
-                                energia: -10,
-                                energiaMaxima: 0,
-                            });
+            <BoxTexto descricao={descricao} imagem={imagemPatio} />
+            <div className="container-botoes">
+                <div className="box">
+                    <BotaoAcao
+                        valor="Varrer"
+                        acao={async () => {
+                            if (jogador) {
+                                if (jogador.energia < 10) {
+                                    setDescricao('Você tenta, mas está muito cansado para fazer qualquer coisa.');
+                                } else {
+                                    const novoJogador = await atualizarJogador({
+                                        id: jogador.id,
+                                        dinheiro: jogador.dinheiro + 100,
+                                        energia: jogador.energia - 10,
+                                        energiaMaxima: jogador.energiaMaxima,
+                                    });
+    
+                                    if (novoJogador) {
+                                        setJogador(novoJogador);
 
-                            // verificar isso pois está bugado
-                            // não sei se é nesse if ou no hook
-                            // na primeira request ele da certo e na segunda falha dizendo que nenhum dado foi alterado
-                            if (!error) {
-                                setJogador(jogadorAtualizado);
+                                        setDescricao('Você varre as folhas secas do pátio, que inevitavelmente ficará sujo novamente com a força do tempo e do vento.');
+                                    }
+                                }
                             }
-                        }
-                    }}
-                />
-                <BotaoAcao
-                    valor="Descansar"
-                    acao={() => {
-                        if (jogador) {
-                            atualizarJogador({
-                                jogador: jogador,
-                                dinheiro: 0,
-                                energia: 100,
-                                energiaMaxima: 0,
-                            });
+                        }}
+                    />
+                    <BotaoAcao
+                        valor="Descansar"
+                        acao={async () => {
+                            if (jogador) {
+                                const novoJogador = await atualizarJogador({
+                                    id: jogador.id,
+                                    dinheiro: jogador.dinheiro,
+                                    energia: jogador.energiaMaxima,
+                                    energiaMaxima: jogador.energiaMaxima,
+                                });
 
-                            if (!error) {
-                                setJogador(jogadorAtualizado);
+                                if (novoJogador) {
+                                    setJogador(novoJogador);
+
+                                    setDescricao('Você descansa e se prepara para mais uma longa noite em meio aos espíritos.');
+                                }
                             }
-                        }
-                    }}
-                />
-                <BotaoNavegacao valor="Igreja" destino={`caminho/${Destinos.Igreja}`} />
-                <BotaoNavegacao valor="Funerária" destino={`caminho/${Destinos.Funeraria}`} />
-                <BotaoNavegacao valor="Mausoléus" destino={`caminho/${Destinos.Mausoleus}`} />
+                        }}
+                    />
+                    <BotaoAcao
+                        valor="Upgrade (200 moedas)"
+                        acao={async () => {
+                            if (jogador) {
+                                if (jogador.dinheiro < 200) {
+                                    setDescricao('Você procura, em vão, dinheiro no bolso.');
+                                } else {
+                                    const novoJogador = await atualizarJogador({
+                                        id: jogador.id,
+                                        dinheiro: jogador.dinheiro - 200,
+                                        energia: jogador.energia,
+                                        energiaMaxima: jogador.energiaMaxima + 100,
+                                    });
+    
+                                    if (novoJogador) {
+                                        setJogador(novoJogador);
+                                    }
+                                }
+                            }
+                        }}
+                    />
+                </div>
+
+                <div className="box">
+                    <BotaoNavegacao valor="Igreja" destino={`caminho/${Destinos.Igreja}`} />
+                    <BotaoNavegacao valor="Funerária" destino={`caminho/${Destinos.Funeraria}`} />
+                    <BotaoNavegacao valor="Mausoléus" destino={`caminho/${Destinos.Mausoleus}`} />
+                </div>
             </div>
         </div>
     );
