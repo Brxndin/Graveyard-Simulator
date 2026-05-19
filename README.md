@@ -5,9 +5,12 @@ Jogo em formato de texto descritivo sobre um zelador de um cemitério fantasmag�
 ## Objetivo
 
 Criado para a cadeira de Tópicos Especiais em Desenvolvimento Web.
+<br>
 Além disso, serve para estudo e prática da Clean Architecture, Domain-Driven Design e princípios SOLID.
 
 ## Tecnologias usadas
+
+- Google Gemini (pesquisa, análise de código, ajuda na definição do escopo, dicas de melhorias e geração/modificação de imagens)
 
 ### /server
 - PHP
