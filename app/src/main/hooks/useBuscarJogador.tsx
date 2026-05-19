@@ -9,7 +9,7 @@ export const useBuscarJogador = () => {
 
     const buscarJogador = useCallback(
         async (id: number) => {
-            await execute(id);
+            return await execute(id);
         },
         [execute]
     );
