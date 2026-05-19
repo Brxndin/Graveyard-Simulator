@@ -4,11 +4,12 @@
 // verificar se é melhor as assombrações serem geradas de forma aleatória e buscadas pelo carro funerário nas funerárias ou se é melhor ter um cadastro em formulário
 // se for pelo carro, colocar um timeout de uns 3 minutos pra pessoa não ficar toda hora ali clicando no carro
 
+import { useState } from "react";
+import imagemFuneraria from '../assets/images/funeraria.png';
 import { BotaoNavegacao } from "../components/BotaoNavegacao";
 import { BoxTexto } from "../components/BoxTexto";
 import { Titulo } from "../components/Titulo";
 import { Destinos } from "../enums/destinos";
-import imagemFuneraria from '../assets/funeraria.png';
 
 // se for por formulário, limitar o número de cadastros por tempo também. Além disso, o necrotério deve ter um limite, então a pessoa será obrigada a alocar o povo nos mausoléus
 export const Funeraria = () => {
@@ -19,12 +20,17 @@ export const Funeraria = () => {
         'No pátio principal, há diversas flores brancas, vermelhas e amarelas que, durante o dia, fazem par com as que são deixadas em cima dos túmulos. À noite, porém, embelezam o caminho junto da luz prateada que vem do céu, quase como um véu transparente e florido, ao mesmo tempo lindo e fantasmagórico.',
     ];
 
+    const [numeroAleatorio] = useState(() => Math.random());
+    const [descricao] = useState(descricoes[Math.floor(numeroAleatorio * descricoes.length)]);
+
     return (
         <div>
             <Titulo texto='Funerária'/>
-            <BoxTexto descricoes={descricoes} imagem={imagemFuneraria} />
-            <div className="center">
-                <BotaoNavegacao valor="Pátio Principal" destino={`caminho/${Destinos.PatioPrincipal}`} />
+            <BoxTexto descricao={descricao} imagem={imagemFuneraria} />
+            <div className="container-botoes">
+                <div className="box">
+                    <BotaoNavegacao valor="Pátio Principal" destino={`caminho/${Destinos.PatioPrincipal}`} />
+                </div>
             </div>
         </div>
     );
