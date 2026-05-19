@@ -6,11 +6,11 @@ interface StatusProps {
 
 export const Status = ({ dinheiro, energia, energiaMaxima }: StatusProps) => {
     return (
-        <div className='center status'>
+        <div className='status-container'>
             <p>
-                Dinheiro: {dinheiro ?? 0} moedas
+                Dinheiro: <span>{dinheiro ?? 0} moedas</span>
                 <br/>
-                Energia: {energia ?? 0}/{energiaMaxima ?? 0}
+                Energia: <span>{energia ?? 0}/{energiaMaxima ?? 0}</span>
             </p>
         </div>
     );
