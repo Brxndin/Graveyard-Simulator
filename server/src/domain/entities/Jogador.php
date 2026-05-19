@@ -32,7 +32,7 @@ class Jogador
 
     public int $energia {
         get {
-            return $this->props['energia'];
+            return $this->props['energia'] ?? 0;
         }
 
         set(int $value) {
@@ -44,7 +44,7 @@ class Jogador
 
     public int $energiaMaxima {
         get {
-            return $this->props['energiaMaxima'];
+            return $this->props['energiaMaxima'] ?? 0;
         }
 
         set(int $value) {
@@ -56,7 +56,7 @@ class Jogador
 
     public int $dinheiro {
         get {
-            return $this->props['dinheiro'];
+            return $this->props['dinheiro'] ?? 0;
         }
 
         set(int $value) {
@@ -72,7 +72,7 @@ class Jogador
             throw new DomainException('A energia não pode ser menor do que 0!');
         }
 
-        if ($energia > ($this->energiaMaxima ?? 0)) {
+        if ($energia > $this->energiaMaxima) {
             throw new DomainException('A energia não pode ser maior do que a energia máxima!');
         }
     }
@@ -83,7 +83,7 @@ class Jogador
             throw new DomainException('A energia máxima não pode ser menor do que 0!');
         }
 
-        if ($energiaMaxima < ($this->energia ?? 0)) {
+        if ($energiaMaxima < $this->energia) {
             throw new DomainException('A energia máxima não pode ser menor do que a energia atual!');
         }
     }
