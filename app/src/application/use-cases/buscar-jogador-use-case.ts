@@ -9,6 +9,6 @@ export class BuscarJogadorUseCase {
     }
 
     async execute(id: number): Promise<Jogador | null> {
-        return await this.repository.find(id);
+        return await this.repository.buscar(id);
     }
 }

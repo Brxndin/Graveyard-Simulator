@@ -1,5 +1,6 @@
-import { useMemo, useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useControllerAdapter } from '../adapters/useControllerAdapter';
+import type { JogadorData } from '../contexts/JogoContext';
 import { MakeBuscarJogadorController } from '../factories/buscar-jogador-factory';
 
 export const useBuscarJogador = () => {
@@ -9,7 +10,24 @@ export const useBuscarJogador = () => {
 
     const buscarJogador = useCallback(
         async (id: number) => {
-            return await execute(id);
+            const resultado = await execute({ id });
+
+            if (resultado) {
+                const jogador: JogadorData = {
+                    id: resultado.jogador.id,
+                    dinheiro: resultado.jogador.dinheiro,
+                    energia: resultado.jogador.energia,
+                    energiaMaxima: resultado.jogador.energiaMaxima,
+                    diaAtual: resultado.jogador.diaAtual,
+                    assombrometroAtual: resultado.jogador.assombrometroAtual,
+                };
+
+                return {
+                    jogador: jogador,
+                };
+            }
+
+            return null;
         },
         [execute]
     );
