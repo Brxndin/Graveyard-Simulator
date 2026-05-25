@@ -9,6 +9,7 @@ import { Mausoleus } from './pages/Mausoleus';
 import { PatioPrincipal } from './pages/PatioPrincipal';
 import { TelaInicial } from './pages/TelaInicial';
 import { JogoProvider } from './providers/JogoProvider';
+import { TelaFinal } from './pages/TelaFinal';
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <TelaInicial />,
+            },
+            {
+                path: 'tela-final/:final',
+                element: <TelaFinal />,
             },
             {
                 path: 'caminho/:destino',
