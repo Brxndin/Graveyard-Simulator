@@ -41,6 +41,8 @@ class PDOJogadorRepository implements JogadorRepository
             energia: $jogador['energia'],
             dinheiro: $jogador['dinheiro'],
             energiaMaxima: $jogador['energia_maxima'],
+            diaAtual: $jogador['dia_atual'],
+            assombrometroAtual: $jogador['assombrometro_atual'],
         );
     }
 
@@ -52,7 +54,7 @@ class PDOJogadorRepository implements JogadorRepository
             $query = $this->connection->prepare(
                 <<<SQL
                     UPDATE jogadores
-                    SET energia = :energia, dinheiro = :dinheiro, energia_maxima = :energia_maxima
+                    SET energia = :energia, dinheiro = :dinheiro, energia_maxima = :energia_maxima, dia_atual = :dia_atual, assombrometro_atual = :assombrometro_atual
                     WHERE id = :id
                 SQL
             );
@@ -61,6 +63,8 @@ class PDOJogadorRepository implements JogadorRepository
                 'energia' => $jogador->energia,
                 'dinheiro' => $jogador->dinheiro,
                 'energia_maxima' => $jogador->energiaMaxima,
+                'dia_atual' => $jogador->diaAtual,
+                'assombrometro_atual' => $jogador->assombrometroAtual,
                 'id' => $jogador->id
             ]);
 
