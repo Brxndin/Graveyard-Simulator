@@ -1,14 +1,11 @@
 import { useState } from "react";
-import type { Jogador } from "../../domain/entities/jogador";
-import { JogoContext } from "../contexts/JogoContext";
-import type { Mausoleu } from "../../domain/entities/mausoleu";
+import { JogoContext, type JogadorData } from "../contexts/JogoContext";
 
 export const JogoProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [jogador, setJogador] = useState<Jogador | null>(null);
-    const [mausoleus, setMausoleus] = useState<Mausoleu[]>([]);
+    const [jogador, setJogador] = useState<JogadorData | null>(null);
 
     return (
-        <JogoContext.Provider value={{ jogador, setJogador, mausoleus, setMausoleus }}>
+        <JogoContext.Provider value={{ jogador, setJogador }}>
             {children}
         </JogoContext.Provider>
     );

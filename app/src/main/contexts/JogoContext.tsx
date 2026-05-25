@@ -1,12 +1,17 @@
 import { createContext } from 'react';
-import type { Jogador } from '../../domain/entities/jogador';
-import type { Mausoleu } from '../../domain/entities/mausoleu';
+
+export interface JogadorData {
+    id?: number;
+    energia: number;
+    dinheiro: number;
+    energiaMaxima: number;
+    diaAtual: number;
+    assombrometroAtual: number;
+}
 
 interface JogoContextType {
-    jogador: Jogador | null;
-    setJogador: (jogador: Jogador | null) => void;
-    mausoleus: Mausoleu[];
-    setMausoleus: (mausoleus: Mausoleu[]) => void;
+    jogador: JogadorData | null;
+    setJogador: (jogador: JogadorData | null) => void;
 }
 
 export const JogoContext = createContext<JogoContextType>({} as JogoContextType);
