@@ -53,6 +53,10 @@ body {
     margin: 0;
 }
 
+.assombrometro {
+    width: 150px;
+}
+
 .imagem-central {
     width: 100%;
     height: auto;
