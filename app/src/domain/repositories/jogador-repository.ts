@@ -1,6 +1,9 @@
 import type { Jogador } from '../entities/jogador';
 
 export interface JogadorRepository {
-    find(id: number): Promise<Jogador | null>;
-    update(jogador: Jogador): Promise<boolean>;
+    buscar(id: number): Promise<Jogador | null>;
+    varrer(id: number): Promise<boolean>;
+    descansar(id: number): Promise<boolean>;
+    acenderVelas(id: number): Promise<boolean>;
+    exorcizar(id: number): Promise<boolean>;
 }

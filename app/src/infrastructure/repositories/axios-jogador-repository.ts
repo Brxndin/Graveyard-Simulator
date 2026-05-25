@@ -9,7 +9,7 @@ export class AxiosJogadorRepository implements JogadorRepository {
         this.api = api;
     }
 
-    async find(id: number): Promise<Jogador | null> {
+    async buscar(id: number): Promise<Jogador | null> {
         const request = await this.api.get(`jogadores/${id}`);
 
         const result = request.data;
@@ -23,17 +23,45 @@ export class AxiosJogadorRepository implements JogadorRepository {
             energia: result.data.jogador.energia,
             dinheiro: result.data.jogador.dinheiro,
             energiaMaxima: result.data.jogador.energiaMaxima,
+            diaAtual: result.data.jogador.diaAtual,
+            assombrometroAtual: result.data.jogador.assombrometroAtual,
         });
 
         return jogador;
     }
 
-    async update(jogador: Jogador): Promise<boolean> {
-        const request = await this.api.put(`jogadores/${jogador.id}`, {
-            energia: jogador.energia,
-            dinheiro: jogador.dinheiro,
-            energiaMaxima: jogador.energiaMaxima,
-        });
+    async varrer(id: number): Promise<boolean> {
+        const request = await this.api.post(`jogadores/varrer/${id}`);
+
+        if (request.status != 200) {
+            return false;
+        }
+
+        return true;
+    }
+
+    async acenderVelas(id: number): Promise<boolean> {
+        const request = await this.api.post(`jogadores/acender-velas/${id}`);
+
+        if (request.status != 200) {
+            return false;
+        }
+
+        return true;
+    }
+
+    async exorcizar(id: number): Promise<boolean> {
+        const request = await this.api.post(`jogadores/exorcizar/${id}`);
+
+        if (request.status != 200) {
+            return false;
+        }
+
+        return true;
+    }
+
+    async descansar(id: number): Promise<boolean> {
+        const request = await this.api.post(`jogadores/descansar/${id}`);
 
         if (request.status != 200) {
             return false;
