@@ -3,8 +3,11 @@
 namespace Server\main\routes;
 
 use Server\main\adapters\SlimAdaptRoutes;
-use Server\main\factories\AtualizarJogadorFactory;
 use Server\main\factories\BuscarJogadorFactory;
+use Server\main\factories\DescansarFactory;
+use Server\main\factories\VarrerFactory;
+use Server\main\factories\AcenderVelasFactory;
+use Server\main\factories\ExorcizarFactory;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
@@ -14,7 +17,10 @@ class JogadorRoutes
     {
         $app->group('/jogadores', function (RouteCollectorProxy $group) {
             $group->get('/{id}', SlimAdaptRoutes::handle(BuscarJogadorFactory::make()));
-            $group->put('/{id}', SlimAdaptRoutes::handle(AtualizarJogadorFactory::make()));
+            $group->post('/descansar/{id}', SlimAdaptRoutes::handle(DescansarFactory::make()));
+            $group->post('/varrer/{id}', SlimAdaptRoutes::handle(VarrerFactory::make()));
+            $group->post('/acender-velas/{id}', SlimAdaptRoutes::handle(AcenderVelasFactory::make()));
+            $group->post('/exorcizar/{id}', SlimAdaptRoutes::handle(ExorcizarFactory::make()));
         });
     }
 }
