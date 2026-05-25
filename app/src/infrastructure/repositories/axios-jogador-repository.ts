@@ -69,4 +69,14 @@ export class AxiosJogadorRepository implements JogadorRepository {
 
         return true;
     }
+
+    async resetar(id: number): Promise<boolean> {
+        const request = await this.api.post(`jogadores/resetar/${id}`);
+
+        if (request.status != 200) {
+            return false;
+        }
+
+        return true;
+    }
 }

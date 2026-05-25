@@ -6,4 +6,5 @@ export interface JogadorRepository {
     descansar(id: number): Promise<boolean>;
     acenderVelas(id: number): Promise<boolean>;
     exorcizar(id: number): Promise<boolean>;
+    resetar(id: number): Promise<boolean>;
 }

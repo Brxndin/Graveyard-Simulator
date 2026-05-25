@@ -1,16 +1,29 @@
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { BotaoNavegacao } from '../components/BotaoNavegacao';
 import { Paragrafo } from '../components/Paragrafo';
 import { Titulo } from '../components/Titulo';
+import { JogoContext } from '../contexts/JogoContext';
 import { Finais } from '../enums/finais';
-import { useEffect } from 'react';
+import { useResetar } from '../hooks/useResetar';
 
 export const TelaFinal = () => {
+    const { jogador, setJogador } = useContext(JogoContext);
     const { final } = useParams();
+    const { resetar } = useResetar();
 
     useEffect(() => {
-        // aquin devera ter a função de resetar o jogo
-        // talvez um hook separado
+        if (jogador) {
+            const dadosIniciais = async () => {
+                const resultado = await resetar(jogador);
+
+                if (resultado) {
+                    setJogador(resultado.jogadorAtualizado);
+                }
+            };
+
+            dadosIniciais();
+        }
     }, []);
 
     return (
