@@ -2,9 +2,7 @@
 
 namespace Server\main;
 
-use Server\main\routes\AssombracaoRoutes;
 use Server\main\routes\JogadorRoutes;
-use Server\main\routes\MausoleuRoutes;
 use Slim\Factory\AppFactory;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -37,8 +35,6 @@ class Server
         });
 
         JogadorRoutes::register($app);
-        AssombracaoRoutes::register($app);
-        MausoleuRoutes::register($app);
 
         $app->addErrorMiddleware(true, true, true);
 
