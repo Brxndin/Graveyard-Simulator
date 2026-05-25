@@ -12,10 +12,10 @@ export default function Layout() {
     useEffect(() => {
         if (!jogador) {
             const dadosIniciais = async () => {
-                const novoJodador = await buscarJogador(1);
+                const resultado = await buscarJogador(1);
 
-                if (novoJodador) {
-                    setJogador(novoJodador);
+                if (resultado) {
+                    setJogador(resultado.jogador);
                 }
             };
 
@@ -27,7 +27,7 @@ export default function Layout() {
 
     return (
         <div id="layout">
-            <Status dinheiro={jogador?.dinheiro} energia={jogador?.energia} energiaMaxima={jogador?.energiaMaxima} />
+            <Status dia={jogador?.diaAtual} assombrometro={jogador?.assombrometroAtual} dinheiro={jogador?.dinheiro} energia={jogador?.energia} energiaMaxima={jogador?.energiaMaxima} />
             <Outlet />
         </div>
     );
