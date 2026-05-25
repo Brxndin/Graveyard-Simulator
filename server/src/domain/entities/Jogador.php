@@ -170,6 +170,15 @@ class Jogador
         return 'Você descansa e se prepara para mais uma longa noite em meio aos espíritos.';
     }
 
+    public function resetar(): void
+    {
+        $this->dinheiro = 0;
+        $this->energiaMaxima = 200;
+        $this->energia = $this->energiaMaxima;
+        $this->diaAtual = 1;
+        $this->assombrometroAtual = 0;
+    }
+
     public function isGameOver(): bool {
         return $this->assombrometroAtual >= 100;
     }

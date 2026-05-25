@@ -8,6 +8,7 @@ use Server\main\factories\DescansarFactory;
 use Server\main\factories\VarrerFactory;
 use Server\main\factories\AcenderVelasFactory;
 use Server\main\factories\ExorcizarFactory;
+use Server\main\factories\ResetarFactory;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
@@ -21,6 +22,7 @@ class JogadorRoutes
             $group->post('/varrer/{id}', SlimAdaptRoutes::handle(VarrerFactory::make()));
             $group->post('/acender-velas/{id}', SlimAdaptRoutes::handle(AcenderVelasFactory::make()));
             $group->post('/exorcizar/{id}', SlimAdaptRoutes::handle(ExorcizarFactory::make()));
+            $group->post('/resetar/{id}', SlimAdaptRoutes::handle(ResetarFactory::make()));
         });
     }
 }
