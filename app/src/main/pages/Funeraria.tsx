@@ -15,9 +15,9 @@ import { Destinos } from "../enums/destinos";
 export const Funeraria = () => {
     // verificar se não é melhor pegar esses dados de um repository mockado mesmo
     const descricoes = [
-        'Você chega no pátio principal, um lugar que, em outro contexto, seria colorido e alegre, mas que aqui, tanto no dia quanto na escuridão da noite, tem um ar fúnebre e triste, como se perdesse a cor. Você consegue ver a lua cheia soltando seu fraco brilho azul, mas que já é o suficiente para dissernir os arredores.',
-        'Ao chegar no pátio principal, você sente uma certa paz. Esse lugar, com sua grande fonte ornamentada e com águas cristalinas, refletindo a luz da lua, trazem um ar de sossêgo e calma.',
-        'No pátio principal, há diversas flores brancas, vermelhas e amarelas que, durante o dia, fazem par com as que são deixadas em cima dos túmulos. À noite, porém, embelezam o caminho junto da luz prateada que vem do céu, quase como um véu transparente e florido, ao mesmo tempo lindo e fantasmagórico.',
+        'Ao chegar na funerária, você sente um ar mais pesado e um silêncio ensurdecedor que, apesar de revelar sua solidão, te deixa apavorado.',
+        'Na funerária, o sentimento de solidão é um paradoxo, pois, ao mesmo tempo que você está sozinho, há muitas pessoas ao seu redor.',
+        'Enquanto você está na funerária, a quietude e as coroas de flores passam uma sensação de paz, mas só de lembrar que há pessoas nos caixões você se sente observado.',
     ];
 
     const [numeroAleatorio] = useState(() => Math.random());
