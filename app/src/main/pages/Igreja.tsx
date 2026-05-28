@@ -8,6 +8,7 @@ import { JogoContext } from '../contexts/JogoContext';
 import { Destinos } from '../enums/destinos';
 import { useAcenderVelas } from '../hooks/useAcenderVelas';
 import { useVarrer } from '../hooks/useVarrer';
+import { useExorcizar } from '../hooks/useExorcizar';
 
 const descricoes = [
     'Você entra na igreja e se depara com lindos vitrais coloridos, principalmente os vermelhos e roxos, desenhando figuras no chão com a luz que vem de fora, criando uma atmosfera ao mesmo tempo linda e meio macabra.',
@@ -19,6 +20,7 @@ export const Igreja = () => {
      const { jogador, setJogador } = useContext(JogoContext);
     const { varrer } = useVarrer();
     const { acenderVelas } = useAcenderVelas();
+    const { exorcizar } = useExorcizar();
     const [numeroAleatorio] = useState(() => Math.random());
     const [descricao, setDescricao] = useState(descricoes[Math.floor(numeroAleatorio * descricoes.length)]);
 
@@ -53,6 +55,20 @@ export const Igreja = () => {
                         acao={async () => {
                             if (jogador) {
                                 const resultado = await acenderVelas(jogador);
+
+                                if (resultado) {
+                                    setJogador(resultado.jogadorAtualizado);
+
+                                    setDescricao(resultado.mensagem);
+                                }
+                            }
+                        }}
+                    />
+                    <BotaoAcao
+                        valor="Exorcizar"
+                        acao={async () => {
+                            if (jogador) {
+                                const resultado = await exorcizar(jogador);
 
                                 if (resultado) {
                                     setJogador(resultado.jogadorAtualizado);

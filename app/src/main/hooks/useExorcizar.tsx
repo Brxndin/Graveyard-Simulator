@@ -8,7 +8,7 @@ export const useExorcizar = () => {
     const controller = useMemo(() => MakeExorcizarController(), []);
     const { data, isLoading, error, execute } = useControllerAdapter(controller);
 
-    const varrer = useCallback(
+    const exorcizar = useCallback(
         async (dados: JogadorData) => {
             const jogador = new Jogador({
                 id: dados?.id ?? undefined,
@@ -44,9 +44,9 @@ export const useExorcizar = () => {
     );
 
     return {
-        dadosVarrer: data,
-        carregandoVarrer: isLoading,
-        erroVarrer: error,
-        varrer
+        dadosExorcizar: data,
+        carregandoExorcizar: isLoading,
+        erroExorcizar: error,
+        exorcizar
     };
 };
